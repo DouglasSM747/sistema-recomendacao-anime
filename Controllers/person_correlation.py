@@ -17,9 +17,6 @@ def person_correlation(ratings_1, ratings_2):
     sum_y_2 = 0
     n = 0
     commonRatings = False
-    
-    print(f'       rating 1: {ratings_1}')
-    print(f'       rating 2: {ratings_2}\n')
 
     for dict_v in ratings_1:
         for dict_u in ratings_2:
