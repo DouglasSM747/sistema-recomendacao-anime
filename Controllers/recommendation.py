@@ -23,7 +23,11 @@ class Recommendation:
             if _user != user:
                 distance = person_correlation(self.users_ratings[_user], self.users_ratings[user])
                 distances.append((_user, distance))
-        return sorted(distances, key=lambda coe_user: coe_user[1], reverse=True)
+        distances = sorted(distances, key=lambda coe_user: coe_user[1], reverse=True)
+        if len(distances) > k:
+            return distances[:k]
+        else:
+            return distances
 
     def calculating_project_valuetion(self):
         """Calcule value projected"""
