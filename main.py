@@ -1,9 +1,9 @@
 import csv
 
-from connection import Connection
-from login import *
+from Controllers.connection import Connection
+from Screens.screens import *
 from functools import partial
-from User import User
+from Structs.User import User
 
 anime_list = []
 

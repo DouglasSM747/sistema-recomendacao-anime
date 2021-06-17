@@ -5,7 +5,7 @@ import json
 
 class Connection:
     def __init__(self):
-        self.connection = sqlite3.connect('my_db.db', check_same_thread=False)
+        self.connection = sqlite3.connect('db.db', check_same_thread=False)
         self.create_table_initial()
         pass
 
