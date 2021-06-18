@@ -4,6 +4,9 @@ from Controllers.connection import Connection
 from Screens.screens import *
 from functools import partial
 from Structs.User import User
+from Controllers.recommendation import Recommendation
+
+recomen = Recommendation()
 
 anime_list = []
 
@@ -22,6 +25,21 @@ def selected_screen(choice):
         init_login()
 
 
+def recomend():
+    reco = Recommendation()
+    lista = reco.knn_recomendation(user=m_user.getLogin(), k=2)
+    aux_list_reco = [['Anime Recomendado', 'Avaliação']]
+    if len(lista) > 0:
+        for i in range(len(lista)):
+            aux_list_reco.append(
+                [
+                    str(lista[i][0]),
+                    str(lista[i][1])
+                ]
+            )
+        put_table(aux_list_reco)
+
+
 def init_login():
     global anime_list_user
     res = login()
@@ -31,6 +49,7 @@ def init_login():
         m_user = User(res['login'], result_get_user['id'])
         anime_list_user = m_connection.get_animes_user(m_user.getId())
         clear()
+        recomend()
         mainPage()
     else:
         initial_screen()
@@ -54,8 +73,6 @@ def addNota(choice, anime):
 
     if not anime_exist:
         anime_list_user.append((anime, choice))
-
-    print(anime_list_user)
 
 
 def load_anime_interface(m_list_anime):
@@ -95,4 +112,3 @@ def mainPage():
 if __name__ == '__main__':
     load_csv()
     initial_screen()
-    # print(m_connection.get_json())

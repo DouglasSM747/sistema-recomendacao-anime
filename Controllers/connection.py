@@ -28,6 +28,7 @@ class Connection:
         m_id = str(uuid.uuid4())
         self.connection.execute('''INSERT INTO User VALUES (?, ?, ?);''', (m_id, login, password))
         self.connection.commit()
+        return m_id
 
     def getUsers(self):
         result = self.connection.execute("SELECT * FROM User")
