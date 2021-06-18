@@ -1,14 +1,15 @@
+import pandas as pd
+
 from random import randint
 
-import pandas as pd
-from pprint import pprint
 from Controllers.connection import Connection
 
 
-def choice_names_pass():
+def choice_names_pass(n=1000):
     """Get names and passwords"""
     names = pd.read_csv('names.csv')
     unique_names = names.drop_duplicates(subset='name')
+    unique_names = unique_names.sample(n=n)
     names = unique_names.name.values.tolist()
     passwords = unique_names.year.values.tolist()
     return names, passwords
