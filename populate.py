@@ -16,7 +16,7 @@ def choice_names_pass(n=1000):
 
 
 def choice_animes_rates(min=10, max=20):
-    """"""
+    """Get animes and your rates"""
     animes = pd.read_csv('anime.csv')
     n = randint(min, max)
     animes_subset = animes.sample(n=n)
